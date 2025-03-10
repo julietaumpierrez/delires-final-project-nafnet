@@ -21,8 +21,8 @@ from basicsr.models.archs.local_arch import Local_Base
 
 class SimpleGate(nn.Module):
     def forward(self, x):
-        x1, x2, x3, x4, x5, x6, x7, x8 = x.chunk(8, dim=1)
-        return x1 * x2  * x3 * x4 * x5 * x6 * x7 * x8
+        x1, x2, x3, x4= x.chunk(4, dim=1)
+        return x1 * x2  * x3 * x4 
 
 class NAFBlock(nn.Module):
     def __init__(self, c, DW_Expand=2, FFN_Expand=2, drop_out_rate=0.):
