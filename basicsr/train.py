@@ -12,7 +12,10 @@ import random
 import time
 import torch
 from os import path as osp
+from clearml import Task
+from omegaconf import DictConfig, OmegaConf
 
+from logger.clearml import *
 from basicsr.data import create_dataloader, create_dataset
 from basicsr.data.data_sampler import EnlargedSampler
 from basicsr.data.prefetch_dataloader import CPUPrefetcher, CUDAPrefetcher
@@ -23,6 +26,8 @@ from basicsr.utils import (MessageLogger, check_resume, get_env_info,
                            set_random_seed)
 from basicsr.utils.dist_util import get_dist_info, init_dist
 from basicsr.utils.options import dict2str, parse
+import os 
+os.environ['RANK'] = str(0)
 
 
 def parse_options(is_train=True):
@@ -34,7 +39,7 @@ def parse_options(is_train=True):
         choices=['none', 'pytorch', 'slurm'],
         default='none',
         help='job launcher')
-    parser.add_argument('--local_rank', type=int, default=0)
+    parser.add_argument('--local-rank', type=int, default=0)
 
     parser.add_argument('--input_path', type=str, required=False, help='The path to the input image. For single image inference only.')
     parser.add_argument('--output_path', type=str, required=False, help='The path to the output image. For single image inference only.')
@@ -146,7 +151,9 @@ def create_train_val_dataloader(opt, logger):
 def main():
     # parse options, set distributed setting, set ramdom seed
     opt = parse_options(is_train=True)
-
+    clearml_setup = True
+    task=safe_init_clearml(project_name="DELIRES",task_name=opt["name"],task_type="training")
+    logger_clearml = task.get_logger()
     torch.backends.cudnn.benchmark = True
     # torch.backends.cudnn.deterministic = True
 
@@ -201,6 +208,9 @@ def main():
         model = create_model(opt)
         start_epoch = 0
         current_iter = 0
+
+    #parameters
+    # print(model)
 
     # create message logger (formatted outputs)
     msg_logger = MessageLogger(opt, current_iter, tb_logger)
@@ -301,5 +311,6 @@ def main():
 
 if __name__ == '__main__':
     import os
+
     os.environ['GRPC_POLL_STRATEGY']='epoll1'
     main()
