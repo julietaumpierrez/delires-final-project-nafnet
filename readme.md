@@ -18,5 +18,8 @@ https://plmlatex.math.cnrs.fr/4194326788bzxvhvrbzcvk
 # Notion link : 
 https://www.notion.so/Delires-1adaedabf49480acb05ddf4f43c871be
 
+# ClearML:
+
+https://app.clear.ml/
 base config :  10 hours more or less. 
 The official pytorch implementation of the paper **[Simple Baselines for Image Restoration (ECCV2022)](https://arxiv.org/abs/2204.04676)**
