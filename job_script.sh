@@ -13,7 +13,7 @@ echo "Job started at: $(date)"
 
 
 # Activate the environment
-source /home/ids/umpierrez-24/miniconda3/bin/conda
+source ~/.bashrc
 conda activate delires-env
 
 # Execute the Python script with specific arguments
