@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=width_16_pow_2             # Name of your job
+#SBATCH --job-name=pow2             # Name of your job
 #SBATCH --output=%x_%j.out            # Output file (%x for job name, %j for job ID)
 #SBATCH --error=%x_%j.err             # Error file
 #SBATCH --partition=P100              # Partition to submit to (A100, V100, etc.)
@@ -17,7 +17,7 @@ source ~/.bashrc
 conda activate delires-env
 
 # Execute the Python script with specific arguments
-srun python -m torch.distributed.launch --nproc_per_node=1 --master_port=4321 basicsr/train_w_logger.py -opt options/train/GoPro/NAFNet-width16.yml --launcher pytorch
+srun python -m torch.distributed.launch --nproc_per_node=1 --master_port=4321 basicsr/train_w_logger.py -opt options/train/GoPro/NAFNet-width32-newgate.yml --launcher pytorch
 
 # Print job completion time
 echo "Job finished at: $(date)"
