@@ -21,8 +21,8 @@ from basicsr.models.archs.local_arch import Local_Base
 
 class SimpleGate(nn.Module):
     def forward(self, x):
-        x1 = x[:,:10,:,:]
-        x2 = x[:,10:20,:,:]
+        x1 = x[:,:15,:,:]
+        x2 = x[:,15:30,:,:]
         return x1 * x2
 
 class NAFBlock(nn.Module):
