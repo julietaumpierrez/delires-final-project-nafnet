@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=n10             # Name of your job
+#SBATCH --job-name=n15             # Name of your job
 #SBATCH --output=%x_%j.out            # Output file (%x for job name, %j for job ID)
 #SBATCH --error=%x_%j.err             # Error file
 #SBATCH --partition=P100              # Partition to submit to (A100, V100, etc.)
