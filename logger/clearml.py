@@ -27,8 +27,14 @@ def connect_cfg(
     task
          the same ClearML task
     """
-    container = OmegaConf.to_container(cfg)
-    task.connect_configuration(container, name=name, description=description)
+    # convert opt to a Omegaconf DictConfig
+    from collections import OrderedDict
+    import json 
+    # Assuming `opt` is your configuration dictionary
+    task.connect(cfg)  # This will log your entire configuration dictionary
+
+    # If you want to log it in a human-readable way
+    task.upload_artifact(name="config_file", artifact_object=json.dumps(cfg, indent=4))
     return task
 
 

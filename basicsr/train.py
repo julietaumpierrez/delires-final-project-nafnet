@@ -153,6 +153,7 @@ def main():
     opt = parse_options(is_train=True)
     clearml_setup = True
     task=safe_init_clearml(project_name="DELIRES",task_name=opt["name"],task_type="training")
+    connect_cfg(opt,task)
     logger_clearml = task.get_logger()
     torch.backends.cudnn.benchmark = True
     # torch.backends.cudnn.deterministic = True

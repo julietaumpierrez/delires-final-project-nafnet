@@ -5,7 +5,7 @@
 # Copyright 2018-2020 BasicSR Authors
 # ------------------------------------------------------------------------
 # general settings
-name: NAFNet-GoPro-width32-1gpu
+name: onlyatt+oneCV
 model_type: ImageRestorationModel
 scale: 1
 num_gpu: 8
@@ -43,9 +43,9 @@ datasets:
 
 
 network_g:
-  type: NAFNetLocal
+  type: NAFNet_justscaLocal
   width: 32
-  enc_blk_nums: [1, 1, 1, 28]
+  enc_blk_nums: [1, 1, 1, 8]
   middle_blk_num: 1
   dec_blk_nums: [1, 1, 1, 1]
 

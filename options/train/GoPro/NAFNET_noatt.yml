@@ -1,11 +1,12 @@
 # ------------------------------------------------------------------------
+# ------------------------------------------------------------------------
 # Copyright (c) 2022 megvii-model. All Rights Reserved.
 # ------------------------------------------------------------------------
 # Modified from BasicSR (https://github.com/xinntao/BasicSR)
 # Copyright 2018-2020 BasicSR Authors
 # ------------------------------------------------------------------------
 # general settings
-name: NAFNet-GoPro-width32-1gpu
+name: NAFNet-GoPro-NOATT
 model_type: ImageRestorationModel
 scale: 1
 num_gpu: 8
@@ -43,7 +44,7 @@ datasets:
 
 
 network_g:
-  type: NAFNetLocal
+  type: NAFNetSimpLocal
   width: 32
   enc_blk_nums: [1, 1, 1, 28]
   middle_blk_num: 1
@@ -80,7 +81,7 @@ train:
 # validation settings
 val:
   val_freq: !!float 2e4
-  save_img: True
+  save_img: false
 
 
   metrics:

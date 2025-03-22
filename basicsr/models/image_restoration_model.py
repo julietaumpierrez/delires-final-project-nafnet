@@ -40,7 +40,6 @@ class ImageRestorationModel(BaseModel):
             self.init_training_settings()
 
         self.scale = int(opt['scale'])
-
     def init_training_settings(self):
         self.net_g.train()
         train_opt = self.opt['train']
